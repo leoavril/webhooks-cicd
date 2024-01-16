@@ -13,14 +13,14 @@ def staging():
     os.system("pip3 install -r requirements.txt")
     os.system("python -m unittest test-app.py")
     os.system("python test-endtoend-app.py")
-    return 'Test ru successfuly'
+    return 'Test run successfuly'
 
 
 @app.route('/deploy', methods=['POST'])
 def deploy():
     os.system("git pull origin main")
     os.system("pip3 install -r requirements.txt")
-    os.system("python app.py")
+    os.system("flask run")
     return 'App is running'
 
 
