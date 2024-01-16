@@ -7,7 +7,7 @@ app = Flask(__name__)
 items = []
 
 
-@app.route('/staging', methods=['GET'])
+@app.route('/staging', methods=['POST'])
 def staging():
     os.system("git pull origin staging")
     os.system("pip3 install -r requirements.txt")
@@ -16,7 +16,7 @@ def staging():
     return redirect(url_for('index'))
 
 
-@app.route('/deploy', methods=['GET'])
+@app.route('/deploy', methods=['POST'])
 def deploy():
     os.system("git pull origin main")
     os.system("pip3 install -r requirements.txt")
