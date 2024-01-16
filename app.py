@@ -11,23 +11,27 @@ items = []
 def staging():
     payload = request.json
     ref = payload.get('ref', '')
+    response = ('', 204)
     if ref == 'refs/heads/staging':
         os.system("git pull origin staging")
         os.system("pip3 install -r requirements.txt")
         os.system("python -m unittest test-app.py")
         os.system("python test-endtoend-app.py")
-    return 'Test run successfuly'
+        response = 'Test run successfuly'
+    return response
 
 
 @app.route('/deploy', methods=['POST'])
 def deploy():
     payload = request.json
     ref = payload.get('ref', '')
+    response = ('', 204)
     if ref == 'refs/heads/main':
         os.system("git pull origin main")
         os.system("pip3 install -r requirements.txt")
         os.system("python app.py")
-    return 'App is running'
+        response = 'App is running'
+    return response
 
 
 @app.route('/')
