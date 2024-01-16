@@ -9,7 +9,7 @@ items = []
 
 @app.route('/staging')
 def staging():
-    os.system("git pull origin main")
+    os.system("git pull origin staging")
     os.system("pip3 install -r requirements.txt")
     os.system("python -m unittest test-app.py")
     os.system("python test-endtoend-app.py")
