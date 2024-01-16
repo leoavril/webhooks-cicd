@@ -30,7 +30,7 @@ def deploy():
         os.system("git pull origin main")
         os.system("pip3 install -r requirements.txt")
         os.system("python app.py")
-        response = 'App is running'
+        response = 'App running'
     return response
 
 
