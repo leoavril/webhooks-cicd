@@ -1,3 +1,5 @@
 git pull origin main
 pip3 install -r requirements.txt
-flask run
+python app.py &
+APP_PID=$!
+kill $APP_PID
