@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for
 import os
+import subprocess
 
 app = Flask(__name__)
 
@@ -29,7 +30,7 @@ def deploy():
     if ref == 'refs/heads/main':
         os.system("git pull origin main")
         os.system("pip3 install -r requirements.txt")
-        os.system("python app.py & APP_PID=$! kill $APP_PID")
+        subprocess.call(['sh', './deploy.sh'])
         response = 'App running'
     return response
 
