@@ -20,7 +20,7 @@ def staging():
 def deploy():
     os.system("git pull origin main")
     os.system("pip3 install -r requirements.txt")
-    os.system("python app.py wait")
+    os.system("python app.py APP_PID=$! kill $APP_PID")
     return 'App is running'
 
 
