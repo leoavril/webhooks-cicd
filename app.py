@@ -29,6 +29,7 @@ def deploy():
     response = ('', 204)
     if ref == 'refs/heads/main':
         subprocess.call(['sh', './deploy.sh'])
+        print("App is running")
         response = 'App running'
     return response
 
