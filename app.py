@@ -9,19 +9,24 @@ items = []
 
 @app.route('/staging', methods=['POST'])
 def staging():
-    os.system("git pull origin main")
-    os.system("pip3 install -r requirements.txt")
-    os.system("python -m unittest test-app.py")
-    os.system("python test-endtoend-app.py")
+    payload = request.json
+    ref = payload.get('ref', '')
+    if ref == 'refs/heads/staging':
+        os.system("git pull origin staging")
+        os.system("pip3 install -r requirements.txt")
+        os.system("python -m unittest test-app.py")
+        os.system("python test-endtoend-app.py")
     return 'Test run successfuly'
 
 
 @app.route('/deploy', methods=['POST'])
 def deploy():
-    os.system("git pull origin main")
-    os.system("pip3 install -r requirements.txt")
-    os.system("python app.py")
-    os.system("taskkill /IM python.exe /F")
+    payload = request.json
+    ref = payload.get('ref', '')
+    if ref == 'refs/heads/main':
+        os.system("git pull origin main")
+        os.system("pip3 install -r requirements.txt")
+        os.system("python app.py")
     return 'App is running'
 
 
