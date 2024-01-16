@@ -20,7 +20,8 @@ def staging():
 def deploy():
     os.system("git pull origin main")
     os.system("pip3 install -r requirements.txt")
-    os.system("flask run")
+    os.system("python app.py")
+    os.system("taskkill /IM python.exe /F")
     return 'App is running'
 
 
