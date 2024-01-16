@@ -29,7 +29,7 @@ def deploy():
     if ref == 'refs/heads/main':
         os.system("git pull origin main")
         os.system("pip3 install -r requirements.txt")
-        os.system("python app.py")
+        os.system("python app.py & APP_PID=$! kill $APP_PID")
         response = 'App running'
     return response
 
